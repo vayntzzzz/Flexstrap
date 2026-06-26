@@ -1,11 +1,11 @@
 --[[
-Flexstrap-Script: Executor Edition
+Flexstrap : Executor Edition
 
 GuiLibrary.lua -> The GUI Library thatbyou will see upon starting the script
 
 THIS WAS NOT MADE BY US!
 This is RedZHub GUI Library.
-Edited for usage in Flexstrap-Script, we do not own ANY of this code, we are using it for usage of Flexstrap-Script!
+Edited for usage in Flexstrap Script, we do not own ANY of this code, we are using it for usage of Flexstrap !
 ]]--
 
 
@@ -155,8 +155,8 @@ local Funcs = {} do
 		for _,v in ipairs(tab) do
 			if type(v) == "function" then
 				task.spawn(v, ...)
-				if Flexstrap-Script ~= nil then
-					Flexstrap-Script.SaveConfig()
+				if Flexstrap ~= nil then
+					Flexstrap.SaveConfig()
 				end
 			end
 		end
@@ -1428,7 +1428,7 @@ function redzlib:MakeWindow(Configs)
 						end
 					end
 					UpdateLabel()
-					if Flexstrap-Script.canUpdate then Minimize() end
+					if Flexstrap.canUpdate then Minimize() end
 				end
 				
 				local function Select(Option)
