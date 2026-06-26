@@ -1,6 +1,6 @@
 if not isfile("Flexstrap/FFlags.json") then writefile("Flexstrap/FFlags.json", "[]") end
 local function loadFunction(func: string) --> Automate the process of loading our functions
-return loadstring(game:HttpGet("https://raw.githubusercontent.com/vayntzzzz/Flexstrap-Script/refs/heads/main/Main/Functions/"..func..".lua"))()
+return loadstring(game:HttpGet("https://raw.githubusercontent.com/vayntzzzz/Flexstrap/refs/heads/main/Main/Functions/"..func..".lua"))()
 end
 local loadFunc = loadFunction
 local cloneref = cloneref or function(...) return ... end
@@ -93,7 +93,7 @@ if not vis then
 end
 
 getgenv().errorlog = getgenv().errorlog or "Flexstrap/Logs/crashlog"..HttpService:GenerateGUID(false)..".txt"
-local GUI: table = loadfile('Flexstrap-Script/Main/Functions/GuiLibrary.lua')() --> Loading the library
+local GUI: table = loadfile('Flexstrap/Main/Functions/GuiLibrary.lua')() --> Loading the library
 local main: table? = GUI:MakeWindow({ --> Create our main wibdo2
     Title = "Flexstrap",
     SubTitle = "",
@@ -313,7 +313,7 @@ local imagelabel = Instance.new('ImageLabel', fakerobloxbutton)
 imagelabel.Size = UDim2.new(0, 22, 0, 22)
 imagelabel.Position = UDim2.new(0.25, 0, 0.25, 0)
 imagelabel.BackgroundTransparency = 1
-imagelabel.Image = getcustomasset('Flexstrap-Script/icon.png')
+imagelabel.Image = getcustomasset('Flexstrap/icon.png')
 imagelabel.ImageColor3 = Color3.new(1, 1, 1)
 
 Instance.new('UICorner', fakerobloxbutton).CornerRadius = UDim.new(1, 0) end)
@@ -820,7 +820,7 @@ local imagelabel = Instance.new('ImageLabel', button)
 imagelabel.Size = UDim2.new(0, 22, 0, 22)
 imagelabel.Position = UDim2.new(0.25, 0, 0.25, 0)
 imagelabel.BackgroundTransparency = 1
-imagelabel.Image = getcustomasset('Flexstrap-Script/icon.png')
+imagelabel.Image = getcustomasset('Flexstrap/icon.png')
 imagelabel.ImageColor3 = Color3.new(1, 1, 1)
 
 local grad = Instance.new('UIGradient', imagelabel)
