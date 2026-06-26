@@ -1,4 +1,4 @@
-if not isfile("Flexstrap-Script/FFlags.json") then writefile("Flexstrap-Script/FFlags.json", "[]") end
+if not isfile("Flexstrap/FFlags.json") then writefile("Flexstrap/FFlags.json", "[]") end
 local function loadFunction(func: string) --> Automate the process of loading our functions
 return loadstring(game:HttpGet("https://raw.githubusercontent.com/vayntzzzz/Flexstrap-Script/refs/heads/main/Main/Functions/"..func..".lua"))()
 end
@@ -61,10 +61,10 @@ if not Flexstrap.canUpdate then Flexstrap.Config = conf return end
 Flexstrap.Config[obj] = val
 end
 Flexstrap.SaveConfig = function() --> Saves the config
-    return writefile("Flexstrap-Script/Main/Configs/Default.json", HttpService:JSONEncode(Flexstrap.Config))
+    return writefile("Flexstrap/Main/Configs/Default.json", HttpService:JSONEncode(Flexstrap.Config))
 end
-if isfile("Flexstrap-Script/Main/Configs/Default.json") then
-    Flexstrap.Config = HttpService:JSONDecode(readfile("Flexstrap-Script/Main/Configs/Default.json"))
+if isfile("Flexstrap/Main/Configs/Default.json") then
+    Flexstrap.Config = HttpService:JSONDecode(readfile("Flexstrap/Main/Configs/Default.json"))
     conf = Flexstrap.Config
 end
 
@@ -92,12 +92,12 @@ if not vis then
     game:GetService('CoreGui')["redz Library V5"].Enabled = false
 end
 
-getgenv().errorlog = getgenv().errorlog or "Flexstrap-Script/Logs/crashlog"..HttpService:GenerateGUID(false)..".txt"
+getgenv().errorlog = getgenv().errorlog or "Flexstrap/Logs/crashlog"..HttpService:GenerateGUID(false)..".txt"
 local GUI: table = loadfile('Flexstrap-Script/Main/Functions/GuiLibrary.lua')() --> Loading the library
 local main: table? = GUI:MakeWindow({ --> Create our main wibdo2
     Title = "Flexstrap",
     SubTitle = "",
-    SaveFolder = "Flexstrap-Script/Main/Configs"
+    SaveFolder = "Flexstrap/Main/Configs"
 })
 main:Visible(vis)
 
@@ -282,7 +282,7 @@ local crosshair = Appearance:AddToggle({
 })
 Appearance:AddDropdown({
     Name = 'Image',
-    Options = listfiles('Flexstrap-Script/Images'),
+    Options = listfiles('Flexstrap/Images'),
     Default = Flexstrap.Config.CrosshairImage,
     Callback = function(val)
         Flexstrap.UpdateConfig('CrosshairImage', val)
@@ -396,9 +396,9 @@ local usefilepath = false
 local FFETextbox: textbox = FastFlags:AddTextBox({
     Name = "Paste Fast Flags (json)",
     Description = "Use with caution. Misusing this can lead to instability or unexpected things happening.",
-    Default = readfile('Flexstrap-Script/FFlags.json'),
+    Default = readfile('Flexstrap/FFlags.json'),
     Callback = function(call: string)
-        writefile("Flexstrap-Script/FFlags.json", call)
+        writefile("Flexstrap/FFlags.json", call)
         local fflags = HttpService:JSONDecode(call:gsub('"True"', "true"):gsub('"False"', "false"))
         for i,v in fflags do
             Flexstrap.ToggleFFlag(i,v)
@@ -493,7 +493,7 @@ fonttdropdown = FastFlags:AddDropdown({
     end
 })
 local fontlists = {'none'}
-for i,v in listfiles('Flexstrap-Script/Main/Fonts') do
+for i,v in listfiles('Flexstrap/Main/Fonts') do
     if v:find('.ttf') then
         table.insert(fontlists, v)
     end
@@ -501,7 +501,7 @@ end
 usecustomfont = FastFlags:AddDropdown({
     Name = 'Custom Fonts',
     Options = fontlists,
-    Description = 'All fonts that are inside "Flexstrap-Script/Main/Fonts" folder.',
+    Description = 'All fonts that are inside "Flexstrap/Main/Fonts" folder.',
     Default = Flexstrap.Config.CustomFont,
     Callback = function(val)
         local json = val:gsub('.ttf', '.json')
@@ -609,7 +609,7 @@ local addcon = function()
         if humanoid.Health <= 0 then
             game:GetService("Players").LocalPlayer.PlayerScripts.RbxCharacterSounds.Enabled = false
             local sound = Instance.new("Sound", workspace)
-            sound.SoundId = isfile('Flexstrap-Script/deathsound.mp3') and getcustomasset('Flexstrap-Script/deathsound.mp3') or isfile('Flexstrap-Script/oofsound.mp3') and getcustomasset('Flexstrap-Script/oofsound.mp3')
+            sound.SoundId = isfile('Flexstrap/deathsound.mp3') and getcustomasset('Flexstrap/deathsound.mp3') or isfile('Flexstrap/oofsound.mp3') and getcustomasset('Flexstrap/oofsound.mp3')
             sound.PlayOnRemove = true 
             sound.Volume = 0.5
             sound:Destroy()
@@ -617,8 +617,8 @@ local addcon = function()
     end)
 end
 local olddeathsound: toggle = EngineSettings:AddToggle({
-    Name = isfile('Flexstrap-Script/deathsound.mp3') and 'Use custom death sound' or 'Use old death sound',
-    Description = isfile('Flexstrap-Script/deathsound.mp3') and 'Gives you a custom death sound.' or "Bring back the classic 'oof' death sound.",
+    Name = isfile('Flexstrap/deathsound.mp3') and 'Use custom death sound' or 'Use old death sound',
+    Description = isfile('Flexstrap/deathsound.mp3') and 'Gives you a custom death sound.' or "Bring back the classic 'oof' death sound.",
     Default = Flexstrap.Config.OofSound,
     Callback = function(call)
     Flexstrap.UpdateConfig("OofSound", call)
