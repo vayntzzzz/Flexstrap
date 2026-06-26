@@ -13,16 +13,16 @@ makefolder('Flexstrap/Main');
 local install: () -> () = function(config: {path: string, setup: boolean}): (table) -> ()
     config = config or {}
     
-    for i: number, v: table in httpservice:JSONDecode(getasync('https://api.github.com/repos/vayntzzzz/Flexstrap/contents/')) do
+    for i: number, v: table in httpservice:JSONDecode(getasync('https://api.github.com/repos/vayntzzzz/Flexstrap-Script/contents/')) do
         if v.name:find('.lua') then
-            writefile(`Flexstrap/{v.name}`, `return loadstring(game:HttpGet('https://raw.githubusercontent.com/vayntzzzz/Flexstrap/refs/heads/main/{v.name}', true))()`);
+            writefile(`Flexstrap-Script/{v.name}`, `return loadstring(game:HttpGet('https://raw.githubusercontent.com/vayntzzzz/Flexstrap-Script/refs/heads/main/{v.name}', true))()`);
         elseif v.name:find('.mp3') or v.name:find('.png') then
-            writefile(`Flexstrap/{v.name}`, game:HttpGet(`https://raw.githubusercontent.com/vayntzzzz/Flexstrap/refs/heads/main/{v.name}`));
+            writefile(`Flexstrap-Script/{v.name}`, game:HttpGet(`https://raw.githubusercontent.com/vayntzzzz/Flexstrap-Script/refs/heads/main/{v.name}`));
         end;
     end;
-    writefile(`Flexstrap/Main/Flexstrap.lua`, `return loadstring(game:HttpGet('https://raw.githubusercontent.com/vayntzzzz/Flexstrap/refs/heads/main/Main/Flexstrap.lua', true))()`);
-    for i: number, v: table in httpservice:JSONDecode(getasync('https://api.github.com/repos/vayntzzzz/Flexstrap/contents/Main/Functions')) do
-        writefile(`Flexstrap/Main/Functions/{v.name}`, `return loadstring(game:HttpGet('https://raw.githubusercontent.com/vayntzzzz/Flexstrap/refs/heads/main/Main/Functions/{v.name}', true))()`);
+    writefile(`Flexstrap-Script/Main/Flexstrap.lua`, `return loadstring(game:HttpGet('https://raw.githubusercontent.com/vayntzzzz/Flexstrap-Script/refs/heads/main/Main/Flexstrap.lua', true))()`);
+    for i: number, v: table in httpservice:JSONDecode(getasync('https://api.github.com/repos/vayntzzzz/Flexstrap-Script/contents/Main/Functions')) do
+        writefile(`Flexstrap-Script/Main/Functions/{v.name}`, `return loadstring(game:HttpGet('https://raw.githubusercontent.com/vayntzzzz/Flexstrap-Script/refs/heads/main/Main/Functions/{v.name}', true))()`);
     end;
     writefile("Flexstrap/Main/Configs/Default.json", "{}")
 end;
@@ -31,6 +31,6 @@ if (not isfolder('Flexstrap') or #listfiles('Flexstrap') <= 6) then
     install({})
 end
 
-local Flexstrap: table = loadfile('Flexstrap/Main/Flexstrap.lua')()
+local Flexstrap: table = loadfile('Flexstrap-Script/Main/Flexstrap.lua')()
 Flexstrap.start() 
 Flexstrap.Visible(not hidegui)
