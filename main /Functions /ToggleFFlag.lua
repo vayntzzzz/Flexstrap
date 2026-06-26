@@ -6,7 +6,7 @@ return function(flag: string, value: string): (string, string) -> ()
 	local FFlag: string = Flexstrap.TouchEnabled and flag:gsub("DFInt", ""):gsub("DFFlag", ""):gsub("FFlag", ""):gsub("FInt", ""):gsub("DFString", ""):gsub("FString", "") or flag --> Removes the keyword of the FFlag, setfflag doesn't like those so we will need to remove it.
 	
 	if getfflag(FFlag) ~= nil then
-		local fflagfile = HttpService:JSONDecode(readfile("Flexstrap-Script/FFlags.json"))
+		local fflagfile = HttpService:JSONDecode(readfile("Flexstrap/FFlags.json"))
 		fflagfile[flag] = tostring(value)
 		writefile("Flexstrap/FFlags.json", HttpService:JSONEncode(fflagfile))
 		return setfflag(FFlag, tostring(value))
